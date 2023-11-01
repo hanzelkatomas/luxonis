@@ -1,5 +1,6 @@
 import puppeteer from "puppeteer";
 import postgres from "postgres";
+import { createTable, truncateTable, addRow, getRows } from "./database";
 
 const SCRAP_URL = "https://www.sreality.cz/en/search/for-sale/apartments";
 const OFFERS_PER_PAGE = 20
@@ -42,9 +43,8 @@ const getFlatSellOffers = async () => {
   // await browser.close();
 }
 
-const result = await getFlatSellOffers();
+// const result = await getFlatSellOffers();
 
-const sql = postgres()
+console.log(await getRows())
 
-
-console.log(result.length, "result", result)
+// console.log(result.length, "result", result)
