@@ -1,50 +1,19 @@
-import puppeteer from "puppeteer";
-import postgres from "postgres";
-import { createTable, truncateTable, addRow, getRows } from "./database";
+import {addRow, createTable, getRows, truncateTable} from "./database";
+import {getFlatSellOffers} from "./scrapper.ts";
+import {runApiEndpoint} from "./api.ts";
 
 const SCRAP_URL = "https://www.sreality.cz/en/search/for-sale/apartments";
-const OFFERS_PER_PAGE = 20
+const OFFER_PER_PAGE = 20
 const ITEMS_TO_SCRAP = 500
-const getFlatSellOffers = async () => {
-  const browser = await puppeteer.launch({
-    headless: true,
-    defaultViewport: null,
-    executablePath: "/bin/google-chrome",
-  });
-  const page = await browser.newPage();
 
-  let totalOffers = []
-  const pagesToScrap = Math.ceil(ITEMS_TO_SCRAP / OFFERS_PER_PAGE)
+// const result = await getFlatSellOffers(SCRAP_URL, OFFER_PER_PAGE, ITEMS_TO_SCRAP)
+// // console.log(result.length, "result", result)
+//
+// await createTable()
+// await truncateTable()
+// result.forEach(async ({ img, title }) => await addRow(img , title))
 
-  for (let i = 0; i < pagesToScrap; i++) {
-    await page.goto(`${SCRAP_URL}?page=${i + 1}`, {
-      waitUntil: "load",
-    });
-
-    const pageOffers = await page.evaluate(() => {
-      const offerEls = document.querySelectorAll(".property");
-      const offerArr = Array.from(offerEls);
-
-      return offerArr.map((offer) => {
-        const title = offer.querySelector<HTMLSpanElement>(".title > span").textContent;
-        const img = offer.querySelector<HTMLImageElement>("a > img")?.src;
-
-        return {
-          title,
-          img,
-        };
-      });
-    });
-
-    totalOffers = [...totalOffers, ...pageOffers]
-  }
-
-  return totalOffers
-  // await browser.close();
-}
-
-// const result = await getFlatSellOffers();
-
-console.log(await getRows())
-
-// console.log(result.length, "result", result)
+// TODO delete this
+const rows = await getRows();
+// console.log(rows.length)
+runApiEndpoint(rows)

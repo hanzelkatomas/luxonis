@@ -22,5 +22,5 @@ export async function addRow(img: string, title: string) {
 }
 
 export async function getRows() {
-  return sql`SELECT * FROM sreality;`;
+  return sql`SELECT * FROM sreality ORDER BY id;`;
 }
