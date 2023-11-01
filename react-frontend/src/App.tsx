@@ -1,34 +1,25 @@
 import {useEffect, useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import PropertyCard from "./components/Card.tsx";
+import {Property} from "./types";
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [propertyOffers, setPropertyOffers] = useState<{ id: number;title: string; image: string}[]>([])
+  const [propertyOffers, setPropertyOffers] = useState<Property[]>([])
 
   useEffect(() => {
     fetch('http://localhost:8080')
       .then(response => response.json())
       .then(data => {
+        console.log(data)
         setPropertyOffers(data)
       })
   }, []);
 
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div className="ml-5">
+        <PropertyCard {...propertyOffers[0]} />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
