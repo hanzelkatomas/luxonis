@@ -1,4 +1,4 @@
-export function runApiEndpoint(data) {
+export function runApiEndpoint(data: []) {
   Bun.serve({
     port: 8080,
     fetch: () => new Response(JSON.stringify(data), {
