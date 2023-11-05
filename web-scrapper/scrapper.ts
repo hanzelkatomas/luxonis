@@ -12,7 +12,7 @@ export const getFlatSellOffers = async (scrapUrl: string, offersPerPage: number,
 
   const page = await browser.newPage();
   await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36")
-  let totalOffers = []
+  let totalOffers: { title: string, img: string}[] = []
 
   const pagesToScrap = Math.ceil(itemsToScrap / offersPerPage)
 
@@ -35,8 +35,10 @@ async function scrapPage(i: number, page: Page, scrapUrl: string) {
     const offerArr = Array.from(offerEls);
 
     return offerArr.map((offer) => {
-      const title = offer.querySelector<HTMLSpanElement>(".title > span").textContent;
-      const img = offer.querySelector<HTMLImageElement>("a > img")?.src;
+      const title = offer
+        .querySelector<HTMLSpanElement>(".title > span")
+        ?.textContent ?? "Untitled";
+      const img = offer.querySelector<HTMLImageElement>("a > img")?.src ?? "";
 
       return {
         title,
