@@ -23,6 +23,7 @@ COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/app/index.ts .
 COPY --from=prerelease /usr/src/app/scrapper.ts .
 COPY --from=prerelease /usr/src/app/api.ts .
+COPY --from=prerelease /usr/src/app/database.ts .
 COPY --from=prerelease /usr/src/app/package.json .
 
 RUN chmod -R 777 .
