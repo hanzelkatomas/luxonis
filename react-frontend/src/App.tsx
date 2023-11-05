@@ -24,7 +24,7 @@ function App() {
 
   return (
     <Layout>
-      <div className="ml-5 flex flex-col gap-16 items-center w-100">
+      <div className="ml-5 flex flex-row flex-wrap gap-12 justify-center w-100">
         {propertyOffers.map((propertyOffer) => (
           <PropertyCard {...propertyOffer}/>
         ))}

@@ -17,8 +17,8 @@ const Pagination: FC<Props> = ({page, setPage, itemsCount, itemsPerPage}) => {
           key={index}
           variant="secondary"
           size="sm"
-          className={`mx-1 px-3 py-2 rounded-full ${
-            index + 1 === page ? "" : ""
+          className={`mx-1 px-3 py-2 ${
+            index + 1 === page ? "bg-gray-200" : ""
           }`}
           onClick={() => setPage(index + 1)}
         >
