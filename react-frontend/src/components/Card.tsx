@@ -14,7 +14,7 @@ const PropertyCard: FC<Property> = ({ title, img}) => {
   return (
     <Card style={{ background: getGradient(baseColor, secondaryColor)}}>
       <CardHeader>
-        <CardTitle className="font-sans font-medium truncate w-80">{title}</CardTitle>
+        <CardTitle className="text-center font-sans font-medium truncate w-80">{title}</CardTitle>
       </CardHeader>
       <CardContent>
         <img src={img} alt={title} style={{ maxHeight: "8rem"}} />
