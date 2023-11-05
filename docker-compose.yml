@@ -1,0 +1,32 @@
+version: '3.6'
+
+services:
+  backend-scrapper:
+    container_name: backend-scrapper
+    build: ./web-scrapper
+    depends_on:
+      - db
+    volumes:
+      - data:/var/lib/pgsql/data
+
+
+  db:
+    image: postgres:12.16-alpine
+    restart: always
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: luxonis
+
+#  vue:
+#    build:
+#      context: ./
+#      dockerfile: client.Dockerfile
+#    container_name: vue-frontend
+#    volumes:
+#      - ./frontend/:/app/
+#    ports:
+#      - "3000:3000"
+
+volumes:
+  data:

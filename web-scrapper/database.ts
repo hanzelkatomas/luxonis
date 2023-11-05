@@ -1,6 +1,6 @@
 import postgres from "postgres";
 
-const DB_CONNECTION_STRING = "postgresql://hanzelkatomas3:postgres@localhost:5432/luxonis"
+const DB_CONNECTION_STRING = "postgresql://postgres:postgres@db:5432/luxonis"
 
 const sql = postgres(DB_CONNECTION_STRING)
 
