@@ -1,0 +1,33 @@
+# Ignore common build and development files
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+.DS_Store
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Ignore version control files and directories
+.git
+.gitignore
+
+# Ignore development and build artifacts
+build/
+dist/
+coverage/
+*.log
+*.swp
+*.swo
+*.swn
+yarn.lock
+*.bak
+*.test.js
+*.map
+*.md
+*.markdown
+*.markdown.scanner
+*.story.ts
+*.mdx
+*.graphql

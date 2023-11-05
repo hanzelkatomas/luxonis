@@ -1,4 +1,4 @@
-import {addRow, createTable, getRows, truncateTable} from "./database";
+import {addRow, createTable, truncateTable} from "./database";
 import {getFlatSellOffers} from "./scrapper.ts";
 import {runApiEndpoint} from "./api.ts";
 
