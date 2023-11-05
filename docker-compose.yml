@@ -8,6 +8,8 @@ services:
       - db
     volumes:
       - data:/var/lib/pgsql/data
+    ports:
+      - "8000:8000"
 
 
   db:

@@ -2,7 +2,7 @@ import {getRows, getRowsCount} from "./database.ts";
 
 export function runApiEndpoint() {
   Bun.serve({
-    port: 800,
+    port: 8000,
     fetch: async (req) => {
       const url = new URL(req.url);
       const page = url.searchParams?.get("page");
@@ -25,6 +25,6 @@ export function runApiEndpoint() {
       });
     }
   })
-  console.log('Server listening on port 8080');
+  console.log('Server listening on port 8000');
 }
 
