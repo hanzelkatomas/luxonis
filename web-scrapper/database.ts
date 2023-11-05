@@ -21,6 +21,20 @@ export async function addRow(img: string, title: string) {
   await sql`INSERT INTO sreality (img, title) VALUES (${img}, ${title});`
 }
 
-export async function getRows() {
-  return sql`SELECT * FROM sreality ORDER BY id;`;
+export async function getRows(page: string | null, limit: string | null) {
+  const offset = (Number(page ?? 1) - 1) * (Number(limit) ?? 5)
+  return sql`
+    SELECT *
+    FROM sreality
+    ORDER BY id
+    LIMIT ${limit ?? 5}
+    OFFSET ${offset};
+  `
+}
+
+export async function getRowsCount() {
+  return sql`
+    SELECT COUNT(*)
+    FROM sreality;
+  `
 }

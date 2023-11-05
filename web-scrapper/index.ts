@@ -1,4 +1,4 @@
-import {addRow, createTable, getRows, truncateTable} from "./database";
+import {addRow, createTable, truncateTable} from "./database";
 import {getFlatSellOffers} from "./scrapper.ts";
 import {runApiEndpoint} from "./api.ts";
 
@@ -13,7 +13,4 @@ const ITEMS_TO_SCRAP = 500
 // await truncateTable()
 // result.forEach(async ({ img, title }) => await addRow(img , title))
 
-// TODO delete this
-const rows = await getRows();
-// console.log(rows.length)
-runApiEndpoint(rows)
+runApiEndpoint()
